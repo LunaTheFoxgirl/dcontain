@@ -1,0 +1,5 @@
+name "dcontain"
+description "Various container types for D"
+authors "clipsey"
+copyright "Copyright © 2019, clipsey"
+license "BSL-1.0"

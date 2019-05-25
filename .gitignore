@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/dcontain
+dcontain.so
+dcontain.dylib
+dcontain.dll
+dcontain.a
+dcontain.lib
+dcontain-test-*
+*.exe
+*.o
+*.obj
+*.lst
