@@ -269,7 +269,14 @@ public:
         return output;
     }
 
-    /// Gets string representation of list
+
+    /++
+        Gets string representation of list
+
+        NOTICE:
+        Refrain from naming any functions toString without following the toString signature.
+        Otherwise the list will cause a compilation error.
+    +/
     string toString() {
         import std.conv : text;
         return data.text;
