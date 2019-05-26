@@ -234,8 +234,8 @@ public:
     /// Remove item from list
     void remove(T item) {
         // Get the index
-        size_t index = indexOf(item);
-        removeAt(index);
+        ptrdiff_t index = indexOf(item);
+        if (index >= 0) removeAt(index);
     }
 
     /// Removes the element at index from the list
