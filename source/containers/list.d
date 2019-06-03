@@ -92,6 +92,11 @@ public:
         return data[index];
     }
 
+    /// Override $ operator for indexing.
+    size_t opDollar() {
+        return this.data.length;
+    }
+
     int opApply(int delegate(ref T) operations) {
         int result = 0;
 
