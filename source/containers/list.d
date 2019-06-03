@@ -266,6 +266,34 @@ public:
         }
     }
 
+    /// Return the last element of the list
+    T back() {
+        return data[$-1];
+    }
+
+    /// Pop the last element of the list
+    T popBack() {
+        scope (exit) data.length--;
+        return back;
+    }
+
+    /// Return the first element of the list
+    T front() {
+        return data[0];
+    }
+
+    /// Pop the first element of the list
+    T popFront() {
+        scope(exit) {
+            if (count() > 1) {
+                data = data[1..$];
+            } else {
+                data.length = 0;
+            }
+        }
+        return front;
+    }
+
     /// Returns a copy of the internal data of the list as an array
     T[] toArray() {
         T[] output = new T[](data.length);
