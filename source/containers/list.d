@@ -88,7 +88,7 @@ public:
     }
 
     /// Index overload for list
-    T opIndex(size_t index) {
+    ref T opIndex(size_t index) {
         return data[index];
     }
 
