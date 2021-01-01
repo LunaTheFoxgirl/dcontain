@@ -34,9 +34,6 @@ struct List(T) {
 private:
     T[] data;
 
-    /// front element id
-    size_t frontElm;
-
 public:
     /// Constructs a list of specified length
     this(size_t length) {
@@ -50,7 +47,7 @@ public:
 
     /// Constructs a list with specified data
     this(List!T data) {
-        this.data = data.toArray;
+        this.data = data.copyToArr();
     }
 
     /// Assignment overload for list
@@ -162,7 +159,7 @@ public:
 
     /// Add range of items to list
     void addRange(List!T items) {
-        data ~= items.toArray();
+        data ~= items.copyToArr();
     }
 
     /// Add range of items to list
@@ -222,7 +219,7 @@ public:
 
     /// Inserts item range in to list at index
     void insertRange(size_t index, List!T items) {
-        insertRange(index, items.toArray);
+        insertRange(index, items.copyToArr());
     }
 
     /// Inserts item range in to list at index
@@ -260,7 +257,7 @@ public:
     /// Reverses the contents of the list
     void reverse() {
         /// Store the old state temporarily.
-        T[] tmp = toArray();
+        T[] tmp = copyToArr();
         foreach_reverse(i, srch; tmp) {
             data[(data.length-1)-i] = srch;
         }
@@ -294,22 +291,33 @@ public:
         return front;
     }
 
+    /**
+        Makes a copy of this list
+    */
+    List!T copy() {
+        return List!T(copyToArr());
+    }
+
     /// Returns a copy of the internal data of the list as an array
-    T[] toArray() {
+    T[] copyToArr() {
         T[] output = new T[](data.length);
         /// Make a copy, by making the LEFT HAND side a slice.
         output[] = data;
         return output;
     }
 
+    /// Gets a reference to the internal array
+    ref T[] getArray() {
+        return data;   
+    }
 
-    /++
+    /**
         Gets string representation of list
 
         NOTICE:
         Refrain from naming any functions toString without following the toString signature.
         Otherwise the list will cause a compilation error.
-    +/
+    */
     string toString() {
         import std.conv : text;
         return data.text;
